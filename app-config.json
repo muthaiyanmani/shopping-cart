@@ -1,8 +1,8 @@
 {
-	"command": "npm run dev",
-	"buildPath": "/Users/muthaiya-13966/Documents/personal/shopping-site/.next",
+	"command": "npm run start",
+	"buildPath": "/Users/muthaiya-13966/Documents/personal/shopping-site",
 	"stack": "node16",
 	"env_variables": {},
-	"memory": 256,
+	"memory": 1024,
 	"scripts": {}
 }
