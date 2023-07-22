@@ -1,3 +1,4 @@
+import { useCart } from "@/context/cart-context";
 import {
   MagnifyingGlassIcon,
   ShoppingBagIcon,
@@ -7,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
+  const { products } = useCart();
   return (
     <header className="flex items-center justify-between w-full gap-2 px-2 mt-3 xs:flex-row pb-7 sm:px-4">
       <Link href="/" className="flex space-x-2">
@@ -48,7 +50,7 @@ export default function Header() {
               aria-hidden="true"
             />
             <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-              0
+              {products.length}
             </span>
             <span className="sr-only">items in cart, view bag</span>
           </Link>

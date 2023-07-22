@@ -21,23 +21,23 @@ const setDataToLocalStorage = (key,state) => {
 }
 
 const getProducts = () => { 
-    const products = getDataFromLocalStorage("products");
+    const { products } = getDataFromLocalStorage("products") || { products: [] };
     return products;
 }
 
 const getProduct = (id) => { 
-    const products = getDataFromLocalStorage("products");
+    const { products } = getDataFromLocalStorage("products");
     return products.find((product) => product.id === id);
 }
 
 const addProduct = (product) => { 
-    const products = getDataFromLocalStorage("products");
+    const { products } = getDataFromLocalStorage("products") || { products: [] };
     products.push(product);
-    setDataToLocalStorage("products", products);
+    setDataToLocalStorage("products", { products });
 }
 
 const removeProduct = (id) => { 
-    const products = getDataFromLocalStorage("products");
+    const { products } = getDataFromLocalStorage("products");
     const updatedProducts = products.filter((product) => product.id !== id);
     setDataToLocalStorage("products", updatedProducts);
 }

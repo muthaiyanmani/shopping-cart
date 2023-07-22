@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Fragment, useState } from "react";
 import { Dialog, RadioGroup, Tab, Transition } from "@headlessui/react";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/outline";
+import { useCart } from "@/context/cart-context";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -92,6 +93,7 @@ const product = {
 };
 
 export default function Products() {
+  const {  addProductToCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [product, setProduct] = useState({});
 
@@ -204,6 +206,7 @@ export default function Products() {
                           <div className="flex mt-10">
                             <button
                               type="submit"
+                              onClick={()=>addProductToCart(product)}
                               className="flex items-center justify-center flex-1 max-w-xs px-8 py-3 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
                             >
                               Add to bag
@@ -233,7 +236,7 @@ export default function Products() {
         <div className="grid grid-cols-1 mt-8 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
             <div key={product.id}>
-              <div className="relative">
+              <div className="relative cursor-pointer" onClick={() => openModal(product)}>
                 <div className="relative w-full overflow-hidden rounded-lg h-72">
                   <Image
                     height={300}
@@ -262,7 +265,7 @@ export default function Products() {
               <div className="mt-6">
                 <button
                   type="button"
-                  onClick={() => openModal(product)}
+                  onClick={() => addProductToCart(product)}
                   className="relative flex items-center justify-center w-full px-8 py-2 text-sm font-medium text-gray-900 bg-gray-100 border-2 border-transparent border-gray-400 rounded-md hover:bg-gray-200"
                 >
                   Add to bag<span className="sr-only">, {product.name}</span>

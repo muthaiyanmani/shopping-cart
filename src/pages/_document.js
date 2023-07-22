@@ -6,10 +6,8 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body className="flex flex-col items-center justify-center min-h-screen py-2 mx-auto bg-slate-100 text-gray-950 max-w-7xl">
-        <CartProvider>
-          <Main />
-          <NextScript />
-        </CartProvider>
+        <Main />
+        <NextScript />
       </body>
     </Html>
   );

@@ -4,7 +4,7 @@ import  {
   getProduct,
   getProducts
 } from "@/utils/localstorage";
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const CartContext = createContext();
 
@@ -29,9 +29,7 @@ const cartReducer = (state, action) => {
 };
 
 const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, {
-    products: []
-  });
+  const [state, dispatch] = useReducer(cartReducer, { products: [] });
 
   useEffect(() => { 
     dispatch({ type: "GET_PRODUCTS" });
