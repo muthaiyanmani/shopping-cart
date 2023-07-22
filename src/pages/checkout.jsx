@@ -56,7 +56,8 @@ export default function Example() {
 
   const submitOrder = async (e) => {
     e.preventDefault();
-    // const { data } = await axios.get(`/api/mail?email=${email}`);
+      const { data } = await axios.get(`/api/mail?email=${email}`);
+      console.log(data);
     setIsOpen(true);
   };
 
