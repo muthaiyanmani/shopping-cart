@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: 'www.zylker.com',
         port: ''
       },
+      {
+        protocol: 'https',
+        hostname: 'tailwindui.com',
+        port: ''
+      },
     ],
   },
 }

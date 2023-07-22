@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 mx-auto max-w-7xl">
+      <div >
         <Header />
         <br />
         <main className="flex flex-col items-center justify-center flex-1 w-full px-4 text-center mt-28 sm:mt-20 background-gradient">
@@ -28,7 +28,7 @@ export default function Home() {
           </h2>
           <Link
             className="px-4 py-3 mt-8 font-medium text-white transition bg-blue-600 rounded-lg sm:mt-10 hover:bg-blue-500"
-            href="/products"
+            href="/shop"
           >
             Start Shopping
           </Link>
