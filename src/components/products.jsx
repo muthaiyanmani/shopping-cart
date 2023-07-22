@@ -11,7 +11,7 @@ function classNames(...classes) {
 const products = [
   {
     id: 1,
-    name: "Zip Tote Basket",
+    name: "Zipdwfe",
     color: "White and black",
     href: "#",
     imageSrc:
@@ -38,6 +38,31 @@ const products = [
     name: "Zip Tote Basket",
     color: "White and black",
     rating: 2,
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
+    imageAlt:
+      "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
+    price: "$140",
+    colors: [
+      {
+        name: "Washed Black",
+        bgColor: "bg-gray-700",
+        selectedColor: "ring-gray-700"
+      },
+      { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
+      {
+        name: "Washed Gray",
+        bgColor: "bg-gray-500",
+        selectedColor: "ring-gray-500"
+      }
+    ]
+  },
+  {
+    id: 3,
+    name: "ZAAAAip Tote Basket",
+    color: "White and black",
+    rating: 5,
     href: "#",
     imageSrc:
       "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",

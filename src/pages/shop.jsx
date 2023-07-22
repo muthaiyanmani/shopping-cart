@@ -5,9 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function Shop() {
-  useEffect(() => {
-    axios.get("/api/mail").then((res) => console.log(res));
-  }, []);
+ 
   return (
     <>
       <Header />

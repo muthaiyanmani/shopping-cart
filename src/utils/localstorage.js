@@ -21,25 +21,25 @@ const setDataToLocalStorage = (key,state) => {
 }
 
 const getProducts = () => { 
-    const { products } = getDataFromLocalStorage("products") || { products: [] };
-    return products;
+    const zylker = getDataFromLocalStorage("zylker");
+    return zylker?.products || [];
 }
 
 const getProduct = (id) => { 
-    const { products } = getDataFromLocalStorage("products");
-    return products.find((product) => product.id === id);
+    const zylker = getDataFromLocalStorage("zylker");
+    return Array.isArray(zylker?.products) ? zylker?.products.find((product) => product.id === id) : null;
 }
 
 const addProduct = (product) => { 
-    const { products } = getDataFromLocalStorage("products") || { products: [] };
-    products.push(product);
-    setDataToLocalStorage("products", { products });
+    const zylker = getDataFromLocalStorage("zylker");
+    let products = Array.isArray(zylker?.products) ? [...zylker?.products, product] : [product];
+    setDataToLocalStorage("zylker", { products });
 }
 
 const removeProduct = (id) => { 
-    const { products } = getDataFromLocalStorage("products");
-    const updatedProducts = products.filter((product) => product.id !== id);
-    setDataToLocalStorage("products", updatedProducts);
+    const zylker = getDataFromLocalStorage("zylker");
+    const products = zylker?.products.filter((product) => product.id !== id);
+    setDataToLocalStorage("zylker", { products });
 }
 
 export { getProducts, getProduct, addProduct, removeProduct };

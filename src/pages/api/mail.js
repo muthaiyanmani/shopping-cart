@@ -10,16 +10,22 @@ import catalyst from "zcatalyst-sdk-node";
 export default async function handler(req, res) {
     const { email } = req.query;
 
-    const app = catalyst.initialize(req);
-    const { sendMail } = app.email();
+    // const app = catalyst.initialize(req);
+    // const { sendMail } = app.email();
     
-    let config = {
-        from_email: 'zylkershop@zohomail.com', 
-        to_email: [email], 
-        html_mode: true,
-        subject: 'Order Confirmation from Zylker Shop!',
-        content: "Hi, Your order has been confirmed. Thank you for shopping with us. Your order will be delivered within 3-5 business days. Regards, Zylker Bazaar"
-    };
-    await sendMail(config);
-    res.status(200).json({ status: "success", data: "mail sent successfully!" });
+    // let config = {
+    //     from_email: 'zylkershop@zohomail.com', 
+    //     to_email: [email], 
+    //     html_mode: true,
+    //     subject: 'Order Confirmation from Zylker Shop!',
+    //     content: "Hi, Your order has been confirmed. Thank you for shopping with us. Your order will be delivered within 3-5 business days. Regards, Zylker Bazaar"
+    // };
+
+    // try {
+    //     await sendMail(config);
+    // }catch(err) {
+    //     console.log(err);
+    //     return res.status(400).json({ status: "error", data: "mail not sent!" });
+    // }
+    res.status(200).json({ status: "success", data: "mail sent successfully!"+ email });
 }

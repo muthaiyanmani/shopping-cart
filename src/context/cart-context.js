@@ -16,7 +16,7 @@ const cartReducer = (state, action) => {
     case "GET_PRODUCTS":
       return { ...state, products: getProducts() };
     case "REMOVE_PRODUCT":
-      removeProduct(action.payload.id);
+      removeProduct(action.payload);
       return {
         ...state,
         products: state.products.filter(
