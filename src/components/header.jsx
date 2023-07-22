@@ -1,3 +1,8 @@
+import {
+  MagnifyingGlassIcon,
+  ShoppingBagIcon,
+  UserIcon
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,16 +17,43 @@ export default function Header() {
           height={40}
         />
         <h1 className="ml-2 text-xl font-bold tracking-tight sm:text-3xl">
-         Zylker <span className="relative text-blue-600 whitespace-nowrap">Bazaar</span> 
+          Zylker{" "}
+          <span className="relative text-blue-600 whitespace-nowrap">
+            Bazaar
+          </span>
         </h1>
       </Link>
-      <Link
-        href="/login"
-        aria-disabled="true"
-        className="px-5 py-2 space-x-2 text-sm font-medium text-white transition bg-blue-600 border border-blue-600 rounded-lg shadow-md cursor-pointer max-w-fit hover:bg-blue-500"
-      >
-        <p>Login</p>
-      </Link>
+
+      <div className="flex items-center">
+        {/* Search */}
+        <Link
+          href="/search"
+          className="hidden p-2 ml-6 text-gray-400 hover:text-gray-500 lg:block"
+        >
+          <span className="sr-only">Search</span>
+          <MagnifyingGlassIcon className="w-6 h-6" aria-hidden="true" />
+        </Link>
+
+        {/* Account */}
+        <Link href="/account" className="p-2 text-gray-400 hover:text-gray-500 lg:ml-4">
+          <span className="sr-only">Account</span>
+          <UserIcon className="w-6 h-6" aria-hidden="true" />
+        </Link>
+
+        {/* Cart */}
+        <div className="flow-root ml-4 lg:ml-6">
+          <Link href="/cart" className="flex items-center p-2 -m-2 group">
+            <ShoppingBagIcon
+              className="flex-shrink-0 w-6 h-6 text-gray-400 group-hover:text-gray-500"
+              aria-hidden="true"
+            />
+            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+              0
+            </span>
+            <span className="sr-only">items in cart, view bag</span>
+          </Link>
+        </div>
+      </div>
     </header>
   );
 }
@@ -38,4 +70,3 @@ export function SquigglyLines() {
     </svg>
   );
 }
-

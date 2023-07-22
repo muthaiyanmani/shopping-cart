@@ -2,16 +2,16 @@ import Image from "next/image";
 
 const navigation = {
   solutions: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" }
+    { name: "Bags", href: "#" },
+    { name: "Tees", href: "#" },
+    { name: "Home Goods", href: "#" },
+    { name: "Accessories", href: "#" }
   ],
   support: [
-    { name: "Pricing", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Status", href: "#" }
+    { name: "Shipping", href: "#" },
+    { name: "Returns", href: "#" },
+    { name: "Warranty", href: "#" },
+    { name: "Secure Payments", href: "#"}
   ],
   company: [
     { name: "About", href: "#" },
@@ -124,7 +124,7 @@ export default function Footer() {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-800">
-                  Solutions
+                Products
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.solutions.map((item) => (
@@ -141,7 +141,7 @@ export default function Footer() {
               </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-800">
-                  Support
+                  Customer Service
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.support.map((item) => (
