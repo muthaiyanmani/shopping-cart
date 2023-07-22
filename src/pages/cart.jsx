@@ -9,8 +9,10 @@ export default function Cart() {
   return (
     <>
       <Header />
+      <h2 className="px-4 my-4 text-xl font-bold">My Cart</h2>
       <div className="grid grid-cols-1 mt-8 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-        {products ? (
+      
+        {products?.length ? (
           products.map((product) => (
             <div key={product.id}>
               <div className="relative cursor-pointer">
@@ -52,7 +54,7 @@ export default function Cart() {
             </div>
           ))
         ) : (
-          <h1 className="text-2xl font-bold text-center">No items in cart</h1>
+          <h3 className="text-2xl font-bold text-center">No items in cart</h3>
         )}
       </div>
       <Footer />
