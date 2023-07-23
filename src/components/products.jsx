@@ -1,123 +1,93 @@
 import Image from "next/image";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, RadioGroup, Tab, Transition } from "@headlessui/react";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/outline";
 import { useCart } from "@/context/cart-context";
+import { getProducts } from "@/client";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const products = [
-  {
-    id: 1,
-    name: "Zipdwfe",
-    color: "White and black",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
-    imageAlt:
-      "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
-    price: "$140",
-    colors: [
-      {
-        name: "Washed Black",
-        bgColor: "bg-gray-700",
-        selectedColor: "ring-gray-700"
-      },
-      { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
-      {
-        name: "Washed Gray",
-        bgColor: "bg-gray-500",
-        selectedColor: "ring-gray-500"
-      }
-    ]
-  },
-  {
-    id: 2,
-    name: "Zip Tote Basket",
-    color: "White and black",
-    rating: 2,
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
-    imageAlt:
-      "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
-    price: "$140",
-    colors: [
-      {
-        name: "Washed Black",
-        bgColor: "bg-gray-700",
-        selectedColor: "ring-gray-700"
-      },
-      { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
-      {
-        name: "Washed Gray",
-        bgColor: "bg-gray-500",
-        selectedColor: "ring-gray-500"
-      }
-    ]
-  },
-  {
-    id: 3,
-    name: "ZAAAAip Tote Basket",
-    color: "White and black",
-    rating: 5,
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
-    imageAlt:
-      "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
-    price: "$140",
-    colors: [
-      {
-        name: "Washed Black",
-        bgColor: "bg-gray-700",
-        selectedColor: "ring-gray-700"
-      },
-      { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
-      {
-        name: "Washed Gray",
-        bgColor: "bg-gray-500",
-        selectedColor: "ring-gray-500"
-      }
-    ]
-  }
-  // More products...
-];
+// const products = [
+//   {
+//     id: 1,
+//     name: "Zipdwfe",
+//     color: "White and black",
+//     href: "#",
+//     imageSrc:
+//       "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
+//     imageAlt:
+//       "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
+//     price: "$140",
+//     colors: [
+//       {
+//         name: "Washed Black",
+//         bgColor: "bg-gray-700",
+//         selectedColor: "ring-gray-700"
+//       },
+//       { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
+//       {
+//         name: "Washed Gray",
+//         bgColor: "bg-gray-500",
+//         selectedColor: "ring-gray-500"
+//       }
+//     ]
+//   },
+//   {
+//     id: 2,
+//     name: "Zip Tote Basket",
+//     color: "White and black",
+//     rating: 2,
+//     href: "#",
+//     imageSrc:
+//       "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
+//     imageAlt:
+//       "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
+//     price: "$140",
+//     colors: [
+//       {
+//         name: "Washed Black",
+//         bgColor: "bg-gray-700",
+//         selectedColor: "ring-gray-700"
+//       },
+//       { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
+//       {
+//         name: "Washed Gray",
+//         bgColor: "bg-gray-500",
+//         selectedColor: "ring-gray-500"
+//       }
+//     ]
+//   },
+//   {
+//     id: 3,
+//     name: "ZAAAAip Tote Basket",
+//     color: "White and black",
+//     rating: 5,
+//     href: "#",
+//     imageSrc:
+//       "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
+//     imageAlt:
+//       "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
+//     price: "$140",
+//     colors: [
+//       {
+//         name: "Washed Black",
+//         bgColor: "bg-gray-700",
+//         selectedColor: "ring-gray-700"
+//       },
+//       { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
+//       {
+//         name: "Washed Gray",
+//         bgColor: "bg-gray-500",
+//         selectedColor: "ring-gray-500"
+//       }
+//     ]
+//   }
+//   // More products...
+// ];
 
-const product = {
-  images: [
-    {
-      id: 1,
-      name: "Angled view",
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg",
-      alt: "Angled front view with bag zipped and handles upright."
-    }
-    // More images...
-  ],
-
-  description: `
-    <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-  `,
-  details: [
-    {
-      name: "Features",
-      items: [
-        "Multiple strap configurations",
-        "Spacious interior with top zip",
-        "Leather handle and tabs",
-        "Interior dividers",
-        "Stainless strap loops",
-        "Double stitched construction",
-        "Water-resistant"
-      ]
-    }
-    // More sections...
-  ]
-};
-
-export default function Products() {
+export default function Products({products = []}) {
   const {  addProductToCart } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [product, setProduct] = useState({});
@@ -259,7 +229,7 @@ export default function Products() {
         </Transition>
 
         <div className="grid grid-cols-1 mt-8 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-          {products.map((product) => (
+          {products.length && products.map((product) => (
             <div key={product.id}>
               <div className="relative cursor-pointer" onClick={() => openModal(product)}>
                 <div className="relative w-full overflow-hidden rounded-lg h-72">

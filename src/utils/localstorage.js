@@ -42,4 +42,4 @@ const removeProduct = (id) => {
     setDataToLocalStorage("zylker", { products });
 }
 
-export { getProducts, getProduct, addProduct, removeProduct };
+export { getProducts, getProduct, addProduct, removeProduct, getDataFromLocalStorage, setDataToLocalStorage };

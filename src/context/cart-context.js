@@ -1,8 +1,12 @@
+import { CREDENTIALS } from "@/client/axios.interceptor";
+import { getEnv } from "@/utils/env";
 import  {
   addProduct,
   removeProduct,
   getProduct,
-  getProducts
+  getProducts,
+  setDataToLocalStorage,
+  getDataFromLocalStorage
 } from "@/utils/localstorage";
 import { createContext, useContext, useEffect, useReducer } from "react";
 
@@ -33,6 +37,13 @@ const CartProvider = ({ children }) => {
 
   useEffect(() => { 
     dispatch({ type: "GET_PRODUCTS" });
+   
+    const token = getDataFromLocalStorage("token");
+    if (!token) {
+      const accessToken = CREDENTIALS['SELF_CLIENT_ACCESS_TOKEN'];
+      const refreshToken = CREDENTIALS['SELF_CLIENT_REFRESH_TOKEN'];
+      setDataToLocalStorage("token", { accessToken, refreshToken });
+    }
   }, []);
 
   const addProductToCart = (product) => {
