@@ -11,21 +11,21 @@ export default async function handler(req, res) {
     const { email } = req.query;
 
     const app = catalyst.initialize(req);
-    const { sendMail } = app.email();
     
+    const appMail = app.email();
+  
     let config = {
-        from_email: 'zylkershop@zohomail.com', 
-        to_email: [email], 
-        html_mode: true,
+        from_email: 'muthaiyan.mb+us@zohotest.com',
+        to_email: [email],
         subject: 'Order Confirmation from Zylker Shop!',
         content: "Hi, Your order has been confirmed. Thank you for shopping with us. Your order will be delivered within 3-5 business days. Regards, Zylker Bazaar"
     };
 
     try {
-        await sendMail(config);
+        await appMail.sendMail(config);
     }catch(err) {
-        console.log(err);
-        return res.status(400).json({ status: "error", data: "mail not sent!" });
+        return res.status(400).json({ status: "error", data: err });
     }
-    res.status(200).json({ status: "success", data: "mail sent successfully!"+ email });
+
+    res.status(200).json({ status: "success", data: "email sent successfully!" });
 }
