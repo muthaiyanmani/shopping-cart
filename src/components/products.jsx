@@ -26,7 +26,7 @@ export default function Products({products = []}) {
   
   return (
     <div className="">
-      <div className="max-w-2xl px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div className="max-w-2xl px-4 pt-8 pb-16 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-xl font-bold text-gray-900">Latest Products</h2>
 
         <Transition appear show={isOpen} as={Fragment}>
