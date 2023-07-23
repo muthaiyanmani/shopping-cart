@@ -23,13 +23,7 @@ export default function Products({products = []}) {
   function closeModal() {
     setIsOpen(false);
   }
-
-  const imageLoader = async ({ src, width, quality }) => {
-    const { data } = await httpClient.get(src);
-    console.log(data);
-    return data;
-  }
-
+  
   return (
     <div className="">
       <div className="max-w-2xl px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -69,7 +63,7 @@ export default function Products({products = []}) {
                           <Tab.Panels className="w-full aspect-h-1 aspect-w-1">
                             <Tab.Panel>
                               <Image
-                                src={product.imageSrc}
+                                src={product.Image_Url}
                                 alt={"product preview"}
                                 width={200}
                                 height={200}
@@ -165,7 +159,7 @@ export default function Products({products = []}) {
                   <Image
                     height={300}
                     width={300}
-                    src={`https://www.zohoapis.com/crm/v3/Products/${product.id}/photo`}
+                    src={product.Image_Url}
                     alt={product.imageAlt}
                     className="object-cover object-center w-full h-full"
                   />

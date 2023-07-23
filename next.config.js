@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: 'www.zohoapis.com',
         port: ''
       },
+      {
+        protocol: 'https',
+        hostname: 'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
+        port: ''
+      }
     ],
   },
 }

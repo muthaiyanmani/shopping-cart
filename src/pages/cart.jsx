@@ -22,7 +22,7 @@ export default function Cart() {
                       <Image
                         height={300}
                         width={300}
-                        src={product.imageSrc}
+                        src={product.Image_Url}
                         alt={product.imageAlt}
                         className="object-cover object-center w-full h-full"
                       />
