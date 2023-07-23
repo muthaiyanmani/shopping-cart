@@ -4,88 +4,11 @@ import { Dialog, RadioGroup, Tab, Transition } from "@headlessui/react";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/outline";
 import { useCart } from "@/context/cart-context";
 import { getProducts } from "@/client";
+import { httpClient } from "@/client/axios.interceptor";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
-// const products = [
-//   {
-//     id: 1,
-//     name: "Zipdwfe",
-//     color: "White and black",
-//     href: "#",
-//     imageSrc:
-//       "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
-//     imageAlt:
-//       "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
-//     price: "$140",
-//     colors: [
-//       {
-//         name: "Washed Black",
-//         bgColor: "bg-gray-700",
-//         selectedColor: "ring-gray-700"
-//       },
-//       { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
-//       {
-//         name: "Washed Gray",
-//         bgColor: "bg-gray-500",
-//         selectedColor: "ring-gray-500"
-//       }
-//     ]
-//   },
-//   {
-//     id: 2,
-//     name: "Zip Tote Basket",
-//     color: "White and black",
-//     rating: 2,
-//     href: "#",
-//     imageSrc:
-//       "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
-//     imageAlt:
-//       "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
-//     price: "$140",
-//     colors: [
-//       {
-//         name: "Washed Black",
-//         bgColor: "bg-gray-700",
-//         selectedColor: "ring-gray-700"
-//       },
-//       { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
-//       {
-//         name: "Washed Gray",
-//         bgColor: "bg-gray-500",
-//         selectedColor: "ring-gray-500"
-//       }
-//     ]
-//   },
-//   {
-//     id: 3,
-//     name: "ZAAAAip Tote Basket",
-//     color: "White and black",
-//     rating: 5,
-//     href: "#",
-//     imageSrc:
-//       "https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg",
-//     imageAlt:
-//       "Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.",
-//     price: "$140",
-//     colors: [
-//       {
-//         name: "Washed Black",
-//         bgColor: "bg-gray-700",
-//         selectedColor: "ring-gray-700"
-//       },
-//       { name: "White", bgColor: "bg-white", selectedColor: "ring-gray-400" },
-//       {
-//         name: "Washed Gray",
-//         bgColor: "bg-gray-500",
-//         selectedColor: "ring-gray-500"
-//       }
-//     ]
-//   }
-//   // More products...
-// ];
 
 export default function Products({products = []}) {
   const {  addProductToCart } = useCart();
@@ -99,6 +22,12 @@ export default function Products({products = []}) {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  const imageLoader = async ({ src, width, quality }) => {
+    const { data } = await httpClient.get(src);
+    console.log(data);
+    return data;
   }
 
   return (
@@ -153,13 +82,13 @@ export default function Products({products = []}) {
                         {/* Product info */}
                         <div className="flex flex-col items-center justify-center">
                           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-                            {product.name}
+                            {product.Product_Name}
                           </h1>
 
                           <div className="mt-3">
                             <h2 className="sr-only">Product information</h2>
                             <p className="text-3xl tracking-tight text-gray-900">
-                              {product.price}
+                             {product.$currency_symbol} {product.Unit_Price}
                             </p>
                           </div>
 
@@ -236,14 +165,14 @@ export default function Products({products = []}) {
                   <Image
                     height={300}
                     width={300}
-                    src={product.imageSrc}
+                    src={`https://www.zohoapis.com/crm/v3/Products/${product.id}/photo`}
                     alt={product.imageAlt}
                     className="object-cover object-center w-full h-full"
                   />
                 </div>
                 <div className="relative mt-4">
                   <h3 className="text-sm font-medium text-gray-900">
-                    {product.name}
+                    {product.Product_Name}
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 </div>
@@ -253,7 +182,7 @@ export default function Products({products = []}) {
                     className="absolute inset-x-0 bottom-0 opacity-50 h-36 bg-gradient-to-t from-black"
                   />
                   <p className="relative text-lg font-semibold text-white">
-                    {product.price}
+                  {product.$currency_symbol} {product.Unit_Price}
                   </p>
                 </div>
               </div>
@@ -261,7 +190,7 @@ export default function Products({products = []}) {
                 <button
                   type="button"
                   onClick={() => addProductToCart(product)}
-                  className="relative flex items-center justify-center w-full px-8 py-2 text-sm font-medium text-gray-900 bg-gray-100 border-2 border-transparent border-gray-400 rounded-md hover:bg-gray-200"
+                  className="relative flex items-center justify-center w-full px-8 py-2 text-sm font-medium text-gray-900 bg-gray-200 border-2 border-transparent border-gray-400 rounded-md"
                 >
                   Add to bag<span className="sr-only">, {product.name}</span>
                 </button>

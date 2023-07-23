@@ -29,7 +29,7 @@ export default function Cart() {
                     </div>
                     <div className="relative mt-4">
                       <h3 className="text-sm font-medium text-gray-900">
-                        {product.name}
+                        {product.Product_Name}
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">
                         {product.color}
@@ -41,7 +41,7 @@ export default function Cart() {
                         className="absolute inset-x-0 bottom-0 opacity-50 h-36 bg-gradient-to-t from-black"
                       />
                       <p className="relative text-lg font-semibold text-white">
-                        {product.price}
+                       {product?.$currency_symbol} {product.Unit_Price}
                       </p>
                     </div>
                   </div>
@@ -49,7 +49,7 @@ export default function Cart() {
                     <button
                       type="button"
                       onClick={() => removeProductFromCart(product.id)}
-                      className="relative flex items-center justify-center w-full px-8 py-2 text-sm font-medium text-gray-900 bg-gray-100 border-2 border-transparent border-gray-400 rounded-md hover:bg-gray-200"
+                      className="relative flex items-center justify-center w-full px-8 py-2 text-sm font-medium text-gray-900 bg-gray-200 border-2 border-transparent border-gray-400 rounded-md"
                     >
                       Remove from bag
                       <span className="sr-only">, {product.name}</span>

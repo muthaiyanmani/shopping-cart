@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 'tailwindui.com',
         port: ''
       },
+      {
+        protocol: 'https',
+        hostname: 'www.zohoapis.com',
+        port: ''
+      },
     ],
   },
 }
