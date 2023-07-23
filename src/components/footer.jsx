@@ -100,7 +100,7 @@ export default function Footer() {
           <div className="space-y-8">
             <Image
               alt="header text"
-              src="https://www.zylker.com/zf-logo-mark%20copy.png"
+              src="/assets/logo.svg"
               width={40}
               height={40}
             />

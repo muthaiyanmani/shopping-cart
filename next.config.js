@@ -5,17 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.zylker.com',
-        port: ''
-      },
-      {
-        protocol: 'https',
         hostname: 'tailwindui.com',
-        port: ''
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.zohoapis.com',
         port: ''
       },
       {

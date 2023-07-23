@@ -14,7 +14,7 @@ export default function Header() {
       <Link href="/" className="flex space-x-2">
         <Image
           alt="header text"
-          src="https://www.zylker.com/zf-logo-mark%20copy.png"
+          src="/assets/logo.svg"
           width={40}
           height={40}
         />
