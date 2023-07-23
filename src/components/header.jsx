@@ -1,14 +1,21 @@
 import { useCart } from "@/context/cart-context";
 import {
+  ArrowPathIcon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
   UserIcon
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
 
 export default function Header() {
   const { products } = useCart();
+  const router = useRouter();
+  const resetStorage = () => {
+    localStorage.removeItem("token");
+    router.reload();
+  }
   return (
     <header className="flex items-center justify-between w-full gap-2 px-2 mt-3 xs:flex-row pb-7 sm:px-4">
       <Link href="/" className="flex space-x-2">
@@ -55,6 +62,10 @@ export default function Header() {
             <span className="sr-only">items in cart, view bag</span>
           </Link>
         </div>
+        <div className="ml-5">
+             <ArrowPathIcon onClick={resetStorage} className="flex-shrink-0 w-6 h-6 text-gray-400 group-hover:text-gray-500"
+              aria-hidden="true"/>
+            </div>
       </div>
     </header>
   );

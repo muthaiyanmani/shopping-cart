@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const token = req.headers.authorization.split(" ")[1];
     try {
         const { data } = await axios.get("https://www.zohoapis.com/crm/v2/Products", { headers: { Authorization: `Bearer ${token}` } });
-        return res.status(200).json({ ...data,token, status: "success"});
+        return res.status(200).json({ ...data, status: "success"});
     } catch (err) {
             if(err.response.status === 401) {
                 const accessToken = await getAccessToken();

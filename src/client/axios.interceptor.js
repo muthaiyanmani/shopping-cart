@@ -27,9 +27,7 @@ Axios.interceptors.request.use((config) => {
 // Change response data/error here
 Axios.interceptors.response.use(
   (response) => {
-
-    const accessToken = response.data.token;
-  
+    const accessToken = response?.data?.token;
     if (accessToken) {
       const token = getDataFromLocalStorage("token");
       setDataToLocalStorage("token", {...token, accessToken });

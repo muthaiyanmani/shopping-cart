@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 9000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy":"next build && catalyst deploy"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
