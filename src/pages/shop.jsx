@@ -3,6 +3,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Products from "@/components/products";
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Shop() {
@@ -17,12 +18,15 @@ export default function Shop() {
     }
     fetchData();
   }, []);
-
  
   return (
     <>
       <Header />
-      <Products products={products} />
+      {isLoading ? <div className="flex flex-col items-center justify-center mt-20">
+        <h2 className="inline-block text-xl font-bold">Fetching products...</h2>
+        <br/>
+        <Image src={'/assets/products-fetching.png'} width={150} height={150} alt="fetching image" />
+      </div> : <Products products={products} />}
       <Footer />
     </>
   );
