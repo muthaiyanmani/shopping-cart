@@ -63,7 +63,7 @@ export default function Products({products = []}) {
                           <Tab.Panels className="w-full aspect-h-1 aspect-w-1">
                             <Tab.Panel>
                               <Image
-                                src={product.Image_Url || '/assets/no-product-image.png'}
+                                src={product.Image_Url || '/assets/no-product-image.jpg'}
                                 alt={"product preview"}
                                 width={200}
                                 height={200}
@@ -159,7 +159,7 @@ export default function Products({products = []}) {
                   <Image
                     height={300}
                     width={300}
-                    src={product.Image_Url || '/assets/no-product-image.png'}
+                    src={product.Image_Url || '/assets/no-product-image.jpg'}
                     alt={product.imageAlt}
                     className="object-cover object-center w-full h-full"
                   />
