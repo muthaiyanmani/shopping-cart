@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+.vercel
+
+.netlify
+
+netlify.toml
+
 .catalystrc
 
 # testing
