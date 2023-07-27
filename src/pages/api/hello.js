@@ -4,5 +4,5 @@
 globalThis.catalyst = "test";
 export default function handler(req, res) {
   console.log("hello api :::", process.pid, process.ppid, {globalThis}, process.uptime());
-  res.status(200).json({ name: 'John Doe' })
+  return res.status(200).json({ catalyst: globalThis.catalyst, status: "success"});
 }
