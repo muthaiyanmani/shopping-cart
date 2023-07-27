@@ -2,7 +2,7 @@ import { CREDENTIALS } from "@/client/axios.interceptor";
 import axios from "axios";
 
 export default async function handler(req, res) { 
-    console.log("products api :::", process.pid, process.ppid);
+    console.log("products api :::", process.pid, process.ppid, {globalThis}, process.uptime());
     const token = req.headers.authorization.split(" ")[1];
     try {
         const { data } = await axios.get("https://www.zohoapis.com/crm/v2/Products", { headers: { Authorization: `Bearer ${token}` } });

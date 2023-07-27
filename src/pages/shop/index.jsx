@@ -33,7 +33,7 @@ export default function Shop() {
 };
 
 export function getServerSideProps() {
-  console.log("shop page :::", process.pid, process.ppid);
+  console.log("shop page :::", process.pid, process.ppid, {globalThis}, process.uptime());
   return {
     props: {
       title: 'Shop'
