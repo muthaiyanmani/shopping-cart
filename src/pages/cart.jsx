@@ -138,13 +138,3 @@ export default function Cart() {
     </>
   );
 }
-
-
-export function getServerSideProps() {
-  console.log("cart page :::", process.pid, process.ppid, {globalThis}, process.uptime());
-  return {
-    props: {
-      title: 'Shop'
-    }
-  }
-}
