@@ -2,20 +2,19 @@ import { CREDENTIALS } from "@/client/axios.interceptor";
 import axios from "axios";
 
 export default async function handler(req, res) { 
-    console.log("products api :::", process.pid, process.ppid, process.uptime());
-    // const token = req.headers.authorization.split(" ")[1];
-    // try {
-    //     const { data } = await axios.get("https://www.zohoapis.com/crm/v2/Products", { headers: { Authorization: `Bearer ${token}` } });
-    //     return res.status(200).json({ ...data, status: "success"});
-    // } catch (err) {
-    //         if(err.response.status === 401) {
-    //             const accessToken = await getAccessToken();
-    //             const { data } = await axios.get("https://www.zohoapis.com/crm/v2/Products", { headers: { Authorization:`Bearer ${accessToken}`}});
-    //             return res.status(200).json({ ...data, token:accessToken, status: "success"});
-    //         }
-    //         return res.status(500).json({ status: "error", data: err });
-    //  }
-    return res.status(200).json({ catalyst: globalThis.catalyst, status: "success"});
+    console.log("products api :::", process.pid, process.ppid, {globalThis}, process.uptime());
+    const token = req.headers.authorization.split(" ")[1];
+    try {
+        const { data } = await axios.get("https://www.zohoapis.com/crm/v2/Products", { headers: { Authorization: `Bearer ${token}` } });
+        return res.status(200).json({ ...data, status: "success"});
+    } catch (err) {
+            if(err.response.status === 401) {
+                const accessToken = await getAccessToken();
+                const { data } = await axios.get("https://www.zohoapis.com/crm/v2/Products", { headers: { Authorization:`Bearer ${accessToken}`}});
+                return res.status(200).json({ ...data, token:accessToken, status: "success"});
+            }
+            return res.status(500).json({ status: "error", data: err });
+     }
 }
 
 const getAccessToken = async () => {
